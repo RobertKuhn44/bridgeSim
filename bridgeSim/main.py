@@ -15,8 +15,9 @@ gameDeck.shuffleDeck()
 
 playerHand = Hand(gameDeck.dealPlayerHand(), 0, 0, 0, 0, 0)
 print('Players Hand')
+playerHand.printHand()
 playerPoints = playerHand.calcPoints()
-print(playerPoints)
+print('Player Hand Points: ' + str(playerPoints))
 
 for idx in range(0, totalSims):
     curScore = 0
@@ -36,6 +37,8 @@ for idx in range(0, totalSims):
         smallSlam += 1
     elif curScore > 35:
         grandSlam += 1
+    else:
+        print('WHOOPS')
 
 passgPercent = (passg/totalSims)*100
 partScorePercent = (partScore/totalSims)*100
@@ -43,13 +46,18 @@ gamePercent = (game/totalSims)*100
 smallSlamPercent = (smallSlam/totalSims)*100
 grandSlamPercent = (grandSlam/totalSims)*100
 
+print('Passes: ' + str(passg))
+print('Part Scores: ' + str(partScore))
+print('Games: ' + str(game))
+print('Small Slams: ' + str(smallSlam))
+print('Grand Slams: ' + str(grandSlam))
 
 print('Total Sims = ' + str(totalSims))
-print('Pass Percent = ' + str(passgPercent))
-print('Part Score Percent = ' + str(partScorePercent))
-print('Game Percent = ' + str(gamePercent))
-print('Small Slam Percent = ' + str(smallSlamPercent))
-print('Grand Slam Percent = ' + str(grandSlamPercent))
+print('Pass Percent = ' + str(round(passgPercent, 2))+ '%')
+print('Part Score Percent = ' + str(round(partScorePercent, 2))+ '%')
+print('Game Percent = ' + str(round(gamePercent, 2))+ '%')
+print('Small Slam Percent = ' + str(round(smallSlamPercent, 2))+ '%')
+print('Grand Slam Percent = ' + str(round(grandSlamPercent, 2))+ '%')
 
 
     

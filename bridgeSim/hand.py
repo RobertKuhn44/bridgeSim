@@ -13,17 +13,16 @@ class Hand:
         for idx in range(0, len(self.cards)):
             self.points += self.cards[idx].value
             
-            if self.cards[idx].suit == 'Clubs':
+            if self.cards[idx].suit == 'C':
                 self.clubs += 1
-
-            if self.cards[idx].suit == 'Hearts':
+            elif self.cards[idx].suit == 'H':
                 self.hearts += 1    
-
-            if self.cards[idx].suit == 'Diamonds':
+            elif self.cards[idx].suit == 'D':
                 self.diamonds += 1
-
-            if self.cards[idx].suit == 'Spades':
+            elif self.cards[idx].suit == 'S':
                 self.spades += 1
+            else:
+                print('ERROR')
         
         if self.hearts == 0:
             self.points += 5
@@ -54,3 +53,9 @@ class Hand:
             self.points += 1
         
         return self.points
+    
+    def printHand(self):
+        cardsString = str(self.cards[0].acro)
+        for idx in range(1, len(self.cards)):
+                cardsString += ', ' + str(self.cards[idx].acro)
+        print(cardsString)
