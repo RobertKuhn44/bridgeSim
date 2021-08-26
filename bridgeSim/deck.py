@@ -1,44 +1,45 @@
 from card import Card
+import random
 
 class Deck:
         #create card array
     cards = []
 
         #create Aces
-    curDiamondCard = Card('Diamonds', 'Ace', int(13), 'DA')
-    curHeartCard = Card('Hearts', 'Ace', int(13), 'HA')
-    curClubCard = Card('Clubs', 'Ace', int(13), 'CA')
-    curSpadeCard = Card('Spades', 'Ace', int(13), 'SA')
+    curDiamondCard = Card('Diamonds', 'Ace', 4, 'DA')
+    curHeartCard = Card('Hearts', 'Ace', 4, 'HA')
+    curClubCard = Card('Clubs', 'Ace', 4, 'CA')
+    curSpadeCard = Card('Spades', 'Ace', 4, 'SA')
     cards.append(curClubCard)
     cards.append(curSpadeCard)
     cards.append(curDiamondCard)
     cards.append(curHeartCard)
 
         #create Kings
-    curDiamondCard = Card('Diamonds', 'King', int(13), 'DK')
-    curHeartCard = Card('Hearts', 'King', int(13), 'HK')
-    curClubCard = Card('Clubs', 'King', int(13), 'CK')
-    curSpadeCard = Card('Spades', 'King', int(13), 'SK')
+    curDiamondCard = Card('Diamonds', 'King', 3, 'DK')
+    curHeartCard = Card('Hearts', 'King', 3, 'HK')
+    curClubCard = Card('Clubs', 'King', 3, 'CK')
+    curSpadeCard = Card('Spades', 'King', 3, 'SK')
     cards.append(curClubCard)
     cards.append(curSpadeCard)
     cards.append(curDiamondCard)
     cards.append(curHeartCard)
 
         #create Queens
-    curDiamondCard = Card('Diamonds', 'Queen', int(13), 'DQ')
-    curHeartCard = Card('Hearts', 'Queen', int(13), 'HQ')
-    curClubCard = Card('Clubs', 'Queen', int(13), 'CQ')
-    curSpadeCard = Card('Spades', 'Queen', int(13), 'SQ')
+    curDiamondCard = Card('Diamonds', 'Queen', 2, 'DQ')
+    curHeartCard = Card('Hearts', 'Queen', 2, 'HQ')
+    curClubCard = Card('Clubs', 'Queen', 2, 'CQ')
+    curSpadeCard = Card('Spades', 'Queen', 2, 'SQ')
     cards.append(curClubCard)
     cards.append(curSpadeCard)
     cards.append(curDiamondCard)
     cards.append(curHeartCard)
 
         #create Jacks
-    curDiamondCard = Card('Diamonds', 'Jack', int(13), 'DJ')
-    curHeartCard = Card('Hearts', 'Jack', int(13), 'HJ')
-    curClubCard = Card('Clubs', 'Jack', int(13), 'CJ')
-    curSpadeCard = Card('Spades', 'Jack', int(13), 'SJ')
+    curDiamondCard = Card('Diamonds', 'Jack', 1, 'DJ')
+    curHeartCard = Card('Hearts', 'Jack', 1, 'HJ')
+    curClubCard = Card('Clubs', 'Jack', 1, 'CJ')
+    curSpadeCard = Card('Spades', 'Jack', 1, 'SJ')
     cards.append(curClubCard)
     cards.append(curSpadeCard)
     cards.append(curDiamondCard)
@@ -46,18 +47,18 @@ class Deck:
     
     #make the cards for ranks 2-10  DONT FORGET YOU NEED TO UPDATE VALUES
     for x in range(2, 11):
-        s ='s'
-        d = 'd'
-        h = 'h'
-        c = 'c'
+        s ='S'
+        d = 'D'
+        h = 'H'
+        c = 'C'
         s += str(x)
         d += str(x)
         h += str(x)
         c += str(x)
-        curDiamondCard = Card('Diamonds', str(x), int(13), d)
-        curHeartCard = Card('Hearts', str(x), int(13), h)
-        curClubCard = Card('Clubs', str(x), int(13), c)
-        curSpadeCard = Card('Spades', str(x), int(13), s)
+        curDiamondCard = Card('Diamonds', str(x), 0, d)
+        curHeartCard = Card('Hearts', str(x), 0, h)
+        curClubCard = Card('Clubs', str(x), 0, c)
+        curSpadeCard = Card('Spades', str(x), 0, s)
 
         #add each suit of the current rank to cards
         cards.append(curClubCard)
@@ -65,4 +66,30 @@ class Deck:
         cards.append(curDiamondCard)
         cards.append(curHeartCard)
 
+    def shuffleDeck(self):
+        random.shuffle(self.cards)
+    
+    def dealPlayerHand(self):
+        hand = []
+
+        for idx in range(0, 13):
+            hand.append(self.cards.pop())
+
+        return hand
+
+    def simPartnerHand(self):
+        hand = []
+
+        for idx in range(0, 13):
+            hand.append(self.cards.pop())
+
+        #add them back so we can sim another hand
+        for idx in range(0, 13):
+            self.cards.append(hand[idx])
+
+        #get ready for the next sim
+        self.shuffleDeck()
+        
+        return hand
+    
     
