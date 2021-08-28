@@ -4,7 +4,8 @@ from hand import Hand
 keepRunning = True
 
 def sim():
-    totalSims = 1000
+    #initialize sim variables
+    totalSims = 100000
     passg = 0
     partScore = 0
     game = 0
@@ -12,25 +13,41 @@ def sim():
     grandSlam = 0
     curScore = 0
 
+    #creates deck obj
     gameDeck = Deck()
 
+    #creates a deck of cards
     gameDeck.createDeck()
+    #shuffle deck
     gameDeck.shuffleDeck()
 
+    #deal the players hand
     playerHand = Hand(gameDeck.dealPlayerHand())
     print('Players Hand')
+    #print the players hand
     playerHand.printHand()
+    #calc the player points
     playerPoints = playerHand.calcPoints()
     print('Player Hand Points: ' + str(playerPoints))
 
+
+    #report we are running sim
+    print('Running Simmulation...')
+    #run the partner hand simulation totalSims amount of times
     for idx in range(0, totalSims):
+        #reset the score for each new hand
         curScore = 0
 
+        #deal the partners hand
         partnerHand = Hand(gameDeck.simPartnerHand())
+        #calc the partner points
         partnerPoints = partnerHand.calcPoints()
+
+        #add the two scores up
         curScore += playerPoints
         curScore += partnerPoints
 
+        #check curScore to see what type of game you simmed
         if curScore < 20:
             passg += 1
         elif curScore >= 20 and curScore <= 25:
@@ -42,21 +59,19 @@ def sim():
         elif curScore > 35:
             grandSlam += 1
         else:
+            #if we are here im not sure how it happened
             print('WHOOPS')
-
+    
+    #calculate percentages
     passgPercent = (passg/totalSims)*100
     partScorePercent = (partScore/totalSims)*100
     gamePercent = (game/totalSims)*100
     smallSlamPercent = (smallSlam/totalSims)*100
     grandSlamPercent = (grandSlam/totalSims)*100
-
-    print('Passes: ' + str(passg))
-    print('Part Scores: ' + str(partScore))
-    print('Games: ' + str(game))
-    print('Small Slams: ' + str(smallSlam))
-    print('Grand Slams: ' + str(grandSlam))
-
-    print('Total Sims = ' + str(totalSims))
+    #make sure we always run totalSims == 1000
+    totalSimsSimmed = passg + partScore + game + smallSlam + grandSlam
+    print('Total Sims = ' + str(totalSimsSimmed))
+    #report percentages
     print('Pass Percent = ' + str(round(passgPercent, 2))+ '%')
     print('Part Score Percent = ' + str(round(partScorePercent, 2))+ '%')
     print('Game Percent = ' + str(round(gamePercent, 2))+ '%')

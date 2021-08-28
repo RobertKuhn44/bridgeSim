@@ -2,14 +2,13 @@ from card import Card
 import random
 
 class Deck:
-        #create card array
+    
     def __init__(self):
         self.cards = []
     
-
     def createDeck(self):
         self.cards = []
-
+        #for each suit of each rank make a card
         for suit in "SCDH":
             for rank in "AKQJT98765432":
                 value = 0
@@ -23,6 +22,7 @@ class Deck:
                     value = 1
             
                 acro = str(suit) + str(rank)
+                #create card and push it onto list of cards
                 nextCard = Card(suit, rank, value, acro)
                 self.cards.append(nextCard)
 
