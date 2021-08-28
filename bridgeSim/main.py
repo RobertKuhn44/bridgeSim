@@ -5,7 +5,7 @@ keepRunning = True
 
 def sim():
     #initialize sim variables
-    totalSims = 100000
+    totalSims = 1000
     passg = 0
     partScore = 0
     game = 0
