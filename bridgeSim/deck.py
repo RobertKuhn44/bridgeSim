@@ -51,5 +51,3 @@ class Deck:
         self.shuffleDeck()
         
         return hand
-    
-    

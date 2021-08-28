@@ -17,7 +17,7 @@ def sim():
     gameDeck.createDeck()
     gameDeck.shuffleDeck()
 
-    playerHand = Hand(gameDeck.dealPlayerHand(), 0, 0, 0, 0, 0)
+    playerHand = Hand(gameDeck.dealPlayerHand())
     print('Players Hand')
     playerHand.printHand()
     playerPoints = playerHand.calcPoints()
@@ -26,7 +26,7 @@ def sim():
     for idx in range(0, totalSims):
         curScore = 0
 
-        partnerHand = Hand(gameDeck.simPartnerHand(), 0, 0, 0, 0, 0)
+        partnerHand = Hand(gameDeck.simPartnerHand())
         partnerPoints = partnerHand.calcPoints()
         curScore += playerPoints
         curScore += partnerPoints

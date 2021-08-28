@@ -1,13 +1,13 @@
 #from card import Card
 
 class Hand:
-    def __init__(self, cards, points, clubs, spades, hearts, diamonds):
+    def __init__(self, cards):
         self.cards = cards
-        self.points = points
-        self.clubs = clubs
-        self.spades = spades
-        self.hearts = hearts
-        self.diamonds = diamonds
+        self.points = 0
+        self.clubs = 0
+        self.spades = 0
+        self.hearts = 0
+        self.diamonds = 0
 
     def calcPoints(self):
         for idx in range(0, len(self.cards)):
