@@ -3,23 +3,28 @@ import random
 
 class Deck:
         #create card array
-    cards = []
+    def __init__(self):
+        self.cards = []
+    
 
-    for suit in "SCDH":
-        for rank in "AKQJT98765432":
-            value = 0
-            if rank == 'A':
-                value = 4
-            elif rank == 'K':
-                value = 3
-            elif rank == 'Q':
-                value = 2
-            elif rank == 'J':
-                value = 1
-        
-            acro = str(suit) + str(rank)
-            nextCard = Card(suit, rank, value, acro)
-            cards.append(nextCard)
+    def createDeck(self):
+        self.cards = []
+
+        for suit in "SCDH":
+            for rank in "AKQJT98765432":
+                value = 0
+                if rank == 'A':
+                    value = 4
+                elif rank == 'K':
+                    value = 3
+                elif rank == 'Q':
+                    value = 2
+                elif rank == 'J':
+                    value = 1
+            
+                acro = str(suit) + str(rank)
+                nextCard = Card(suit, rank, value, acro)
+                self.cards.append(nextCard)
 
     def shuffleDeck(self):
         random.shuffle(self.cards)
